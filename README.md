@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/lxxiqar47aqo62db?svg=true)](https://ci.appveyor.com/project/GrumpyBusted/grumpy-servicebase)
+[![Build status](https://ci.appveyor.com/api/projects/status/pbf141nkapdve6yi?svg=true)](https://ci.appveyor.com/project/GrumpyBusted/grumpy-logging)
 [![codecov](https://codecov.io/gh/GrumpyBusted/Grumpy.Logging/branch/master/graph/badge.svg)](https://codecov.io/gh/GrumpyBusted/Grumpy.Logging)
 [![nuget](https://img.shields.io/nuget/v/Grumpy.Logging.svg)](https://www.nuget.org/packages/Grumpy.Logging/)
 [![downloads](https://img.shields.io/nuget/dt/Grumpy.Logging.svg)](https://www.nuget.org/packages/Grumpy.Logging/)
