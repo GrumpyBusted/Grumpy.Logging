@@ -7,7 +7,7 @@ namespace Grumpy.Logging
     {
         public static void Debug(this ILogger logger, Exception exception, string message, params object[] objects)
         {
-            logger.Log(LogLevel.Debug, 0, GrumpyFormatter.Format(message, objects), exception, MessageFormatter);
+            Log(logger, LogLevel.Debug, exception, message, objects);
         }
 
         public static void Debug(this ILogger logger, string message, params object[] objects)
@@ -17,7 +17,7 @@ namespace Grumpy.Logging
 
         public static void Trace(this ILogger logger, Exception exception, string message, params object[] objects)
         {
-            logger.Log(LogLevel.Trace, 0, GrumpyFormatter.Format(message, objects), exception, MessageFormatter);
+            Log(logger, LogLevel.Trace, exception, message, objects);
         }
 
         public static void Trace(this ILogger logger, string message, params object[] objects)
@@ -27,7 +27,7 @@ namespace Grumpy.Logging
 
         public static void Information(this ILogger logger, Exception exception, string message, params object[] objects)
         {
-            logger.Log(LogLevel.Information, 0, GrumpyFormatter.Format(message, objects), exception, MessageFormatter);
+            Log(logger, LogLevel.Information, exception, message, objects);
         }
 
         public static void Information(this ILogger logger, string message, params object[] objects)
@@ -37,7 +37,7 @@ namespace Grumpy.Logging
 
         public static void Warning(this ILogger logger, Exception exception, string message, params object[] objects)
         {
-            logger.Log(LogLevel.Warning, 0, GrumpyFormatter.Format(message, objects), exception, MessageFormatter);
+            Log(logger, LogLevel.Warning, exception, message, objects);
         }
 
         public static void Warning(this ILogger logger, string message, params object[] objects)
@@ -47,7 +47,7 @@ namespace Grumpy.Logging
 
         public static void Error(this ILogger logger, Exception exception, string message, params object[] objects)
         {
-            logger.Log(LogLevel.Error, 0, GrumpyFormatter.Format(message, objects), exception, MessageFormatter);
+            Log(logger, LogLevel.Error, exception, message, objects);
         }
 
         public static void Error(this ILogger logger, string message, params object[] objects)
@@ -57,12 +57,17 @@ namespace Grumpy.Logging
 
         public static void Critical(this ILogger logger, Exception exception, string message, params object[] objects)
         {
-            logger.Log(LogLevel.Critical, 0, GrumpyFormatter.Format(message, objects), exception, MessageFormatter);
+            Log(logger, LogLevel.Critical, exception, message, objects);
         }
 
         public static void Critical(this ILogger logger, string message, params object[] objects)
         {
             Critical(logger, null, message, objects);
+        }
+
+        private static void Log(ILogger logger, LogLevel logLevel, Exception exception, string message, params object[] objects)
+        {
+            logger.Log(logLevel, 0, GrumpyFormatter.Format(message, objects), exception, MessageFormatter);
         }
 
         private static string MessageFormatter(object state, Exception error)
