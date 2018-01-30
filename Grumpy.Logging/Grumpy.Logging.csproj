@@ -32,14 +32,23 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ILoggerExtensions.cs" />
+    <Compile Include="FormatExpression.cs" />
+    <Compile Include="LoggerExtensions.cs" />
+    <Compile Include="ITextExpression.cs" />
+    <Compile Include="LiteralFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GrumpyFormatter.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Grumpy.Common">
       <Version>1.2.7</Version>
+    </PackageReference>
+    <PackageReference Include="Grumpy.Json">
+      <Version>1.2.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
       <Version>1.1.2</Version>
