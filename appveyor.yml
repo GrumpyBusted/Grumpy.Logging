@@ -26,12 +26,12 @@ test:
     only:
       - '**\bin\**\*.UnitTests.dll'
 test_script:
-  - cmd: "\"%USERPROFILE%\\.nuget\\packages\\OpenCover\\4.6.519\\tools\\OpenCover.Console.exe\" -register:user -target:\"%xunit20%\\xunit.console.x86.exe\" -targetargs:\"Grumpy.Common.UnitTests\\bin\\Release\\Grumpy.Logging.UnitTests.dll -noshadow\" -output:\"coverage.xml\" -filter:\"+[Grumpy.Logging*]* -[Grumpy.Logging.UnitTests*]*\""
+  - cmd: "\"%USERPROFILE%\\.nuget\\packages\\OpenCover\\4.6.519\\tools\\OpenCover.Console.exe\" -register:user -target:\"%xunit20%\\xunit.console.x86.exe\" -targetargs:\"Grumpy.Logging.UnitTests\\bin\\Release\\Grumpy.Logging.UnitTests.dll -noshadow\" -output:\"coverage.xml\" -filter:\"+[Grumpy.Logging*]* -[Grumpy.Logging.UnitTests*]*\""
 after_test:
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
       Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-      bash codecov.sh -f "coverage.xml" -t 84b951bd-6b17-40c4-af76-0181d876e0ec
+      bash codecov.sh -f "coverage.xml" -t a576721c-0a7e-4afb-a53f-dead9dbc3370
 after_build:
   - ps: nuget pack Grumpy.Logging\bin\Release\Grumpy.Logging.nuspec -Version $env:APPVEYOR_BUILD_VERSION
 artifacts:
