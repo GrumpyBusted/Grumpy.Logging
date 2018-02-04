@@ -37,7 +37,7 @@
     <Compile Include="LoggerExtensionsTests.cs" />
     <Compile Include="Helper\MyDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmartFormatterTests.cs" />
+    <Compile Include="GrumpyFormatterTests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>

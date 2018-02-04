@@ -1,7 +1,7 @@
 ﻿namespace Grumpy.Logging
 {
     /// <summary>
-    /// String Extension for Smart formatter
+    /// String Extension for Grumpy formatter
     /// </summary>
     public static class StringExtensions
     {

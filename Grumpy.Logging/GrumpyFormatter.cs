@@ -4,7 +4,7 @@ using System.Linq;
 namespace Grumpy.Logging
 {
     /// <summary>
-    /// Smart formatter class for in string serialization and other extensions to string format
+    /// Formatter class for in string serialization and other extensions to string format
     /// </summary>
     public static class GrumpyFormatter
     {

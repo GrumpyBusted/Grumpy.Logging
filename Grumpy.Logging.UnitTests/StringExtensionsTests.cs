@@ -7,7 +7,7 @@ namespace Grumpy.Logging.UnitTests
     public class StringExtensionsTests
     {
         [Fact]
-        public void SmartFormatExtensionSerializeObject()
+        public void GrumpyFormatExtensionSerializeObject()
         {
             var obj = new { foo = new { bar = "Value" } };
 

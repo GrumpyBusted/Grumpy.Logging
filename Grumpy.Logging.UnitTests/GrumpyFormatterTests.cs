@@ -4,10 +4,10 @@ using Xunit;
 
 namespace Grumpy.Logging.UnitTests
 {
-    public class SmartFormatterTests
+    public class GrumpyFormatterTests
     {
         [Fact]
-        public void SmartFormatFormattingPlainString()
+        public void GrumpyFormatFormattingPlainString()
         {
             var s = GrumpyFormatter.Format("Hallo");
 
@@ -15,7 +15,7 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatUsingNamedPartOfObject()
+        public void GrumpyFormatUsingNamedPartOfObject()
         {
             var obj = new { foo = "Value" };
 
@@ -25,7 +25,7 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatSerializeObject()
+        public void GrumpyFormatSerializeObject()
         {
             var s = GrumpyFormatter.Format("Hallo {@dto}", new MyDto());
 
@@ -33,7 +33,15 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatUsingNamedPartOfObjectAndFormattingOption()
+        public void GrumpyFormatSkipObject()
+        {
+            var s = GrumpyFormatter.Format("Hallo {%dto}", "Message");
+
+            s.Should().Be("Hallo {%dto}\r\nHallo\r\n{\r\n  \"dto\": \"Message\"\r\n}");
+        }
+
+        [Fact]
+        public void GrumpyFormatUsingNamedPartOfObjectAndFormattingOption()
         {
             var s = GrumpyFormatter.Format("Hallo {#date:yyyy-MM-dd}", new MyDto());
 
@@ -41,7 +49,7 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatUsingTwoNamedPartOfObject()
+        public void GrumpyFormatUsingTwoNamedPartOfObject()
         {
             var obj1 = new { foo = "Value1", bar = "Value2" };
             var obj2 = new { foo = "Value3", bar = "Value4" };
@@ -52,7 +60,7 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatOfInt()
+        public void GrumpyFormatOfInt()
         {
             var s = GrumpyFormatter.Format("Hallo {foo:000}", 12);
 
@@ -60,7 +68,7 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatUsingNPathIntoObject()
+        public void GrumpyFormatUsingNPathIntoObject()
         {
             var obj = new { foo = new { bar = "Value" } };
 
@@ -70,7 +78,7 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatSerializeTwoObjects()
+        public void GrumpyFormatSerializeTwoObjects()
         {
             var obj = new { foo = new { bar = "Value" } };
 
@@ -80,7 +88,7 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatWithIndexedObjects()
+        public void GrumpyFormatWithIndexedObjects()
         {
             var s = GrumpyFormatter.Format("Hallo {@1} {0}", 123, new MyDto());
 
@@ -88,11 +96,11 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void SmartFormatWithNulls()
+        public void GrumpyFormatWithNulls()
         {
             var s = GrumpyFormatter.Format("Hallo {Var1} {@Var2}", null, null);
 
-            s.Should().Be("Hallo {Var1} {@Var2}\r\nHallo null null\r\nObject not found by formatter: Var1\r\n{\r\n  \"Var1\": null\r\n}\r\nObject not found by formatter: Var2\r\n{\r\n  \"Var2\": null\r\n}");
+            s.Should().Be("Hallo {Var1} {@Var2}\r\nHallo null\r\nObject not found by formatter: Var1\r\n{\r\n  \"Var1\": null\r\n}\r\nObject not found by formatter: Var2\r\n{\r\n  \"Var2\": null\r\n}");
         }
     }
 }

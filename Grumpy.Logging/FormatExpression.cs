@@ -38,7 +38,7 @@ namespace Grumpy.Logging
 
             _type = _expression.Length > 0 ? _expression[0] : ' ';
 
-            if (_type == '@' || _type == '#')
+            if (_type == '@' || _type == '#' || _type == '%')
                 _expression = _expression.Substring(1).Trim();
             else
                 _type = ' ';
@@ -90,7 +90,7 @@ namespace Grumpy.Logging
                         break;
                 }
 
-                return FormatOutput(data, obj, value);
+                return FormatOutput(data, obj, value, _type);
             }
             catch (ArgumentException)
             {
@@ -108,7 +108,7 @@ namespace Grumpy.Logging
             return "";
         }
 
-        private string FormatOutput(ICollection<string> data, object obj, string value)
+        private string FormatOutput(ICollection<string> data, object obj, string value, char type)
         {
             if (obj == null)
                 value = "null";
@@ -125,7 +125,7 @@ namespace Grumpy.Logging
             else if (value.Left() == "{")
                 data.Add(value);
 
-            if (value.Left() == "{")
+            if (type.In('@', '%') || value.Left(1) == "{")
                 value = "";
 
             return value;
