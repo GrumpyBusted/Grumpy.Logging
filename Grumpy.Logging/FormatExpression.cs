@@ -116,7 +116,9 @@ namespace Grumpy.Logging
             {
                 if (obj.IsNumber())
                     value = obj.ToString();
-                else
+                else if (((string)obj).TrimStart().Left() == "{")
+                    value = obj.ToString();
+                else 
                     value = "\"" + obj + "\"";
             }
 
@@ -125,7 +127,7 @@ namespace Grumpy.Logging
             else if (value.Left() == "{")
                 data.Add(value);
 
-            if (type.In('@', '%') || value.Left(1) == "{")
+            if (type.In('@', '%') || value.Left() == "{")
                 value = "";
 
             return value;

@@ -33,11 +33,19 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
-        public void GrumpyFormatSkipObject()
+        public void GrumpyFormatSkipString()
         {
             var s = GrumpyFormatter.Format("Hallo {%dto}", "Message");
 
             s.Should().Be("Hallo {%dto}\r\nHallo\r\n{\r\n  \"dto\": \"Message\"\r\n}");
+        }
+
+        [Fact]
+        public void GrumpyFormatSkipObject()
+        {
+            var s = GrumpyFormatter.Format("Hallo {%dto}", "{ \"F\": \"Message\"}");
+
+            s.Should().Be("Hallo {%dto}\r\nHallo\r\n{\r\n  \"dto\": { \"F\": \"Message\"}\r\n}");
         }
 
         [Fact]
