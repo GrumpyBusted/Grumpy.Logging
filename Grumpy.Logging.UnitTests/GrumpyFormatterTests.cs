@@ -49,6 +49,14 @@ namespace Grumpy.Logging.UnitTests
         }
 
         [Fact]
+        public void GrumpyFormatBool()
+        {
+            var s = GrumpyFormatter.Format("Hallo {BoolTrue} {BoolFalse}", true, false);
+
+            s.Should().Be("Hallo {BoolTrue} {BoolFalse}\r\nHallo \"True\" \"False\"\r\n{\r\n  \"BoolTrue\": \"True\"\r\n}\r\n{\r\n  \"BoolFalse\": \"False\"\r\n}");
+        }
+
+        [Fact]
         public void GrumpyFormatUsingNamedPartOfObjectAndFormattingOption()
         {
             var s = GrumpyFormatter.Format("Hallo {#date:yyyy-MM-dd}", new MyDto());

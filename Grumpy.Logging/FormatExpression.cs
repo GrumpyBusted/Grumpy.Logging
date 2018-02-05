@@ -84,7 +84,7 @@ namespace Grumpy.Logging
                         break;
                     default:
                         // ReSharper disable FormatStringProblem
-                        if (!string.IsNullOrEmpty(_format))
+                        if (!_format.NullOrEmpty())
                             value = string.Format("\"{0:" + _format + "}\"", obj);
                         // ReSharper restore FormatStringProblem
                         break;
@@ -116,10 +116,20 @@ namespace Grumpy.Logging
             {
                 if (obj.IsNumber())
                     value = obj.ToString();
-                else if (((string)obj).TrimStart().Left() == "{")
-                    value = obj.ToString();
-                else 
-                    value = "\"" + obj + "\"";
+                else
+                {
+                    if (obj is string stringObject)
+                    {
+                        if (stringObject.TrimStart().Left() == "{")
+                            value = obj.ToString();
+                        else
+                            value = "\"" + obj + "\"";
+                    }
+                    else
+                    {
+                        value = "\"" + obj + "\"";
+                    }
+                }
             }
 
             if (_expression != "")
