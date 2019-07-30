@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
 using Grumpy.Common.Extensions;
 using Grumpy.Json;
 
@@ -77,10 +75,10 @@ namespace Grumpy.Logging
                         value = obj.SerializeToJson();
                         break;
                     case '#' when string.IsNullOrEmpty(_format):
-                        obj = DataBinder.Eval(obj, _expression);
+                        obj = ObjectEvaluator.Eval(obj, _expression);
                         break;
                     case '#':
-                        obj = DataBinder.Eval(obj, _expression, "{0:" + _format + "}");
+                        obj = ObjectEvaluator.Eval(obj, _expression, "{0:" + _format + "}");
                         break;
                     default:
                         // ReSharper disable FormatStringProblem
@@ -95,10 +93,6 @@ namespace Grumpy.Logging
             catch (ArgumentException)
             {
                 data.Add($"Invalid argument for formatting: {_expression} {obj}");
-            }
-            catch (HttpException)
-            {
-                data.Add($"Unable to format expression: {_expression} {obj}");
             }
             catch (Exception)
             {
